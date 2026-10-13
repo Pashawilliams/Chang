@@ -1,0 +1,80 @@
+{
+  "version": 2,
+  "updatedAt": "2026-10-13T23:29:16.031Z",
+  "offset": 594324146,
+  "sessionStats": {
+    "sessionNumber": 4,
+    "cycleDurationMinutes": 320,
+    "startedAt": "2026-10-13T23:29:15.776Z",
+    "lastSavedAt": "2026-10-13T23:29:16.031Z",
+    "nextRestartAt": "2026-10-14T04:49:15.776Z"
+  },
+  "config": {
+    "version": 2,
+    "updatedAt": "2026-10-13T22:52:35.406Z",
+    "superAdminId": 7906546417,
+    "admins": [
+      {
+        "id": 7906546417,
+        "role": "superadmin",
+        "label": "Главный администратор",
+        "addedAt": "2026-10-14T01:15:00.000Z"
+      }
+    ],
+    "rates": {
+      "uah_per_usd": "44.20",
+      "usdt": "1",
+      "usdc": "1",
+      "usd": "1",
+      "btc": "65000",
+      "eth": "3500",
+      "bnb": "600",
+      "sol": "150",
+      "trx": "0.15",
+      "doge": "0.12",
+      "ltc": "80"
+    },
+    "wallets": {
+      "usdt:ton": "UQBSNF5LmSE6yoDFuGDxTjHL2eD6D9FchgZgjuYgBM6Z3R4V",
+      "usdt:tron": "TDDGTd8hP4vfQK7ygVuikwwt9E6eszPTJ1",
+      "usdt:solana": "a8SkbQtuwhpmPjHC9w1gHZzdLpNodJuVqGqZgiMHt3m",
+      "usdt:ethereum": "0x8Db560e6A8B6108aAC314A82b23778a1A131B0e3",
+      "usdt:bsc": "0x8Db560e6A8B6108aAC314A82b23778a1A131B0e3",
+      "usdc:ethereum": "0x8Db560e6A8B6108aAC314A82b23778a1A131B0e3",
+      "usdc:solana": "a8SkbQtuwhpmPjHC9w1gHZzdLpNodJuVqGqZgiMHt3m",
+      "usdc:bsc": "0x8Db560e6A8B6108aAC314A82b23778a1A131B0e3",
+      "sol:solana": "a8SkbQtuwhpmPjHC9w1gHZzdLpNodJuVqGqZgiMHt3m",
+      "trx:tron": "TDDGTd8hP4vfQK7ygVuikwwt9E6eszPTJ1",
+      "btc:bitcoin": "bc1qqv6wkxrufsklfj3309xxaqe2hqsjwj3848tq2f",
+      "eth:ethereum": "0x8Db560e6A8B6108aAC314A82b23778a1A131B0e3",
+      "doge:dogecoin": "D74jrQYHbuGqmMbyBD4VEXC9XRj6zyS9Kg",
+      "ltc:litecoin": "ltc1qhjn8g40f7f44s5ej2gzflyuuzq7fqp94curv7u"
+    },
+    "contacts": {
+      "telegram": "@Franklin2281",
+      "phone": "+380773364200"
+    },
+    "settings": {
+      "exchangeEnabled": true,
+      "paymentTimerMinutes": 15,
+      "maintenanceMessage": "Сервіс тимчасово оновлює резерви. Спробуйте через декілька хвилин."
+    }
+  },
+  "orders": [
+    {
+      "code": "EE60DD12",
+      "give": "100 USDT",
+      "get": "4420 UAH",
+      "network": "TRON (TRC20)",
+      "address": "TDDGTd8hP4vfQK7ygVuikwwt9E6eszPTJ1",
+      "card": "1275 4512 4515 4245",
+      "phone": "+380 (77) 545 48 78",
+      "telegram": "@teueushe",
+      "time": "14.10.2026, 01:53:58",
+      "status": "rejected",
+      "createdAt": "2026-10-13T22:54:08.498Z",
+      "updatedAt": "2026-10-13T22:54:53.309Z"
+    }
+  ],
+  "sessions": {}
+}
