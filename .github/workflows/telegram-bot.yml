@@ -1,0 +1,135 @@
+name: CryptoSpace Telegram Admin Bot (5h 20m Eternal Loop)
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'bot/**'
+      - '.github/workflows/telegram-bot.yml'
+  schedule:
+    # Backup watchdog every 30 minutes in case a runner ever drops
+    - cron: '*/30 * * * *'
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  run-admin-bot:
+    runs-on: ubuntu-latest
+    # 345 min job ceiling (> 320 min bot cycle, < 360 min GitHub hard limit)
+    timeout-minutes: 345
+
+    steps:
+      - name: Check or rotate active 5h 20m bot session
+        id: guard
+        env:
+          GH_TOKEN: ${{ secrets.BOT_GH_TOKEN || secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          CURRENT_RUN_ID: ${{ github.run_id }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          python3 - << 'PYEOF'
+          import json, os, time, urllib.request, datetime
+
+          token = os.environ["GH_TOKEN"]
+          repo = os.environ["REPO"]
+          current_id = int(os.environ["CURRENT_RUN_ID"])
+          event_name = os.environ.get("EVENT_NAME", "")
+
+          url = f"https://api.github.com/repos/{repo}/actions/workflows/telegram-bot.yml/runs?status=in_progress&per_page=10"
+          req = urllib.request.Request(url, headers={
+              "Authorization": f"token {token}",
+              "Accept": "application/vnd.github+json",
+              "User-Agent": "CryptoSpace-Bot-Guard"
+          })
+          should_run = "true"
+          try:
+              with urllib.request.urlopen(req) as resp:
+                  data = json.loads(resp.read().decode())
+              now = datetime.datetime.now(datetime.timezone.utc)
+              for run in data.get("workflow_runs", []):
+                  old_id = int(run["id"])
+                  if old_id != current_id:
+                      started_str = run.get("run_started_at") or run.get("created_at")
+                      started_dt = datetime.datetime.fromisoformat(started_str.replace("Z", "+00:00"))
+                      age_min = (now - started_dt).total_seconds() / 60.0
+                      if event_name == "schedule" and age_min < 318:
+                          print(f"Active session run {old_id} is healthy (age: {age_min:.1f} min). Skipping cron duplicate.")
+                          should_run = "false"
+                          break
+                      else:
+                          print(f"Canceling previous session run {old_id} for code/session update...")
+                          cancel_req = urllib.request.Request(
+                              f"https://api.github.com/repos/{repo}/actions/runs/{old_id}/cancel",
+                              method="POST",
+                              headers={
+                                  "Authorization": f"token {token}",
+                                  "Accept": "application/vnd.github+json",
+                                  "User-Agent": "CryptoSpace-Bot-Guard"
+                              }
+                          )
+                          try:
+                              urllib.request.urlopen(cancel_req)
+                          except Exception as ce:
+                              print("Cancel warning:", ce)
+                          time.sleep(6)
+          except Exception as e:
+              print("Guard check warning:", e)
+
+          with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+              f.write(f"should_run={should_run}\n")
+          PYEOF
+
+      - name: Checkout repository
+        if: steps.guard.outputs.should_run == 'true'
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        if: steps.guard.outputs.should_run == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Restore local runtime cache
+        if: steps.guard.outputs.should_run == 'true'
+        uses: actions/cache/restore@v4
+        with:
+          path: .bot-runtime
+          key: cryptospace-bot-state-${{ github.run_id }}
+          restore-keys: |
+            cryptospace-bot-state-
+
+      - name: Run Telegram Admin Bot for 5 hours 20 minutes (320 min)
+        if: steps.guard.outputs.should_run == 'true'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          BOT_GH_TOKEN: ${{ secrets.BOT_GH_TOKEN || secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          BOT_STATE_BRANCH: bot-state
+          BOT_MAX_MINUTES: '320'
+        run: |
+          node bot/admin-bot.js
+
+      - name: Save local runtime cache for next session
+        if: always() && steps.guard.outputs.should_run == 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: .bot-runtime
+          key: cryptospace-bot-state-${{ github.run_id }}
+
+      - name: Trigger next 5h 20m session automatically
+        if: always() && !cancelled() && steps.guard.outputs.should_run == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.BOT_GH_TOKEN || secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          echo "Triggering next 5h 20m session..."
+          curl -sS -X POST \
+            -H "Authorization: token ${GH_TOKEN}" \
+            -H "Accept": "application/vnd.github+json" \
+            "https://api.github.com/repos/${REPO}/actions/workflows/telegram-bot.yml/dispatches" \
+            -d '{"ref":"main"}'
+          echo "Next 5h 20m session dispatched!"

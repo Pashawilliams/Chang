@@ -1,0 +1,1 @@
+{"name":"cryptospace-visual","private":true,"type":"module","scripts":{"check":"node --check dist/assets/app.js && node --check dist/assets/phone.js && node --test tests/*.test.js"}}
