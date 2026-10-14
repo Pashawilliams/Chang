@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "updatedAt": "2026-10-14T01:16:50.974Z",
-  "offset": 594324169,
+  "updatedAt": "2026-10-14T01:16:53.256Z",
+  "offset": 594324170,
   "sessionStats": {
     "sessionNumber": 7,
     "cycleDurationMinutes": 320,
     "startedAt": "2026-10-14T00:10:31.350Z",
-    "lastSavedAt": "2026-10-14T01:16:50.974Z",
+    "lastSavedAt": "2026-10-14T01:16:53.256Z",
     "nextRestartAt": "2026-10-14T05:30:31.350Z"
   },
   "config": {
@@ -89,9 +89,5 @@
       "createdAt": "2026-10-14T00:01:08.989Z"
     }
   ],
-  "sessions": {
-    "7906546417": {
-      "step": "await_admin_add"
-    }
-  }
+  "sessions": {}
 }
