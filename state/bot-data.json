@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "updatedAt": "2026-10-14T00:05:53.204Z",
-  "offset": 594324162,
+  "updatedAt": "2026-10-14T00:05:58.899Z",
+  "offset": 594324164,
   "sessionStats": {
     "sessionNumber": 6,
     "cycleDurationMinutes": 320,
     "startedAt": "2026-10-13T23:43:35.131Z",
-    "lastSavedAt": "2026-10-14T00:05:53.204Z",
+    "lastSavedAt": "2026-10-14T00:05:58.899Z",
     "nextRestartAt": "2026-10-14T05:03:35.131Z"
   },
   "config": {
@@ -89,5 +89,10 @@
       "createdAt": "2026-10-14T00:01:08.989Z"
     }
   ],
-  "sessions": {}
+  "sessions": {
+    "7906546417": {
+      "step": "await_contact",
+      "field": "telegram"
+    }
+  }
 }
