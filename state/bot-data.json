@@ -1,13 +1,13 @@
 {
   "version": 2,
-  "updatedAt": "2026-10-14T07:41:19.219Z",
+  "updatedAt": "2026-10-14T13:00:20.260Z",
   "offset": 594324182,
   "sessionStats": {
-    "sessionNumber": 10,
+    "sessionNumber": 11,
     "cycleDurationMinutes": 320,
-    "startedAt": "2026-10-14T07:41:18.954Z",
-    "lastSavedAt": "2026-10-14T07:41:19.219Z",
-    "nextRestartAt": "2026-10-14T13:01:18.954Z"
+    "startedAt": "2026-10-14T13:00:19.883Z",
+    "lastSavedAt": "2026-10-14T13:00:20.260Z",
+    "nextRestartAt": "2026-10-14T18:20:19.883Z"
   },
   "config": {
     "version": 2,
