@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "updatedAt": "2026-10-14T01:17:34.746Z",
-  "offset": 594324178,
+  "updatedAt": "2026-10-14T01:18:01.786Z",
+  "offset": 594324179,
   "sessionStats": {
     "sessionNumber": 7,
     "cycleDurationMinutes": 320,
     "startedAt": "2026-10-14T00:10:31.350Z",
-    "lastSavedAt": "2026-10-14T01:17:34.746Z",
+    "lastSavedAt": "2026-10-14T01:18:01.786Z",
     "nextRestartAt": "2026-10-14T05:30:31.350Z"
   },
   "config": {
@@ -98,8 +98,9 @@
       "phone": "+380 (77) 336 42 00",
       "telegram": "@CryptoSpace092",
       "time": "14.10.2026, 04:17:34",
-      "status": "new",
-      "createdAt": "2026-10-14T01:17:34.746Z"
+      "status": "processing",
+      "createdAt": "2026-10-14T01:17:34.746Z",
+      "updatedAt": "2026-10-14T01:18:01.786Z"
     }
   ],
   "sessions": {}
