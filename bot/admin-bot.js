@@ -58,7 +58,7 @@ const DEFAULT_CONFIG = {
     'ltc:litecoin': 'ltc1qhjn8g40f7f44s5ej2gzflyuuzq7fqp94curv7u'
   },
   contacts: {
-    telegram: '@Franklin2281',
+    telegram: '@CryptoSpace092',
     phone: '+380773364200'
   },
   settings: {
@@ -1051,7 +1051,7 @@ async function handleCallbackQuery(cb) {
     await setSession(chatId, { step: 'await_contact', field });
     await tgApi('answerCallbackQuery', { callback_query_id: cb.id });
     const promptText = field === 'telegram'
-      ? `✏️ <b>ИЗМЕНЕНИЕ TELEGRAM НА САЙТЕ</b>\nТекущий: ${escapeHtml(config.contacts.telegram)}\n\nОтправьте новый юзернейм (например <code>@Franklin2281</code>):`
+      ? `✏️ <b>ИЗМЕНЕНИЕ TELEGRAM НА САЙТЕ</b>\nТекущий: ${escapeHtml(config.contacts.telegram)}\n\nОтправьте новый юзернейм (например <code>@CryptoSpace092</code>):`
       : `✏️ <b>ИЗМЕНЕНИЕ НОМЕРА ТЕЛЕФОНА НА САЙТЕ</b>\nТекущий: <code>${escapeHtml(config.contacts.phone)}</code>\n\nОтправьте новый номер телефона (например <code>+380773364200</code>):`;
     await editOrSend(promptText, {
       inline_keyboard: [[{ text: '❌ Отмена', callback_data: 'menu:contacts' }]]
@@ -1193,7 +1193,7 @@ async function handleCallbackQuery(cb) {
       address: config.wallets['usdt:tron'],
       card: '4441 1144 8822 9012',
       phone: '+380 (77) 336 42 00',
-      telegram: '@Franklin2281',
+      telegram: '@CryptoSpace092',
       time: nowStr,
       status: 'new'
     };
